@@ -1,0 +1,23 @@
+States:
+
+S0: Initial state
+S1: Detected '1'
+S2: Detected '10'
+S3: Detected '100'
+S4: Detected '0'
+S5: Detected '00'
+S6: Detected '000'
+S7: Detected '0001' (output 1)
+Transitions:
+
+S0 → S1 (in=1), S0 → S4 (in=0)
+S1 → S1 (in=1), S1 → S2 (in=0)
+S2 → S1 (in=1), S2 → S3 (in=0)
+S3 → S1 (in=1), S3 → S4 (in=0, output=1 for '1000')
+S4 → S5 (in=0), S4 → S5 (in=0), S4 → S4 (in=0), S4 → S5 (in=0)
+S5 → S6 (in=0), S5 → S4 (in=1)
+S6 → S7 (in=1), S6 → S4 (in=0)
+S7 → S1 (in=1), S7 → S4 (in=0, output=1 for '0001')
+Outputs:
+
+Output is 1 in S3 (after '1000') and S7 (after '0001'), otherwise 0.
